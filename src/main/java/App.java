@@ -11,6 +11,8 @@ public class App {
 
         get("/",(request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
+            ArrayList<Team> teams = Team.getAllTeams();
+            model.put("posts", teams);
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 

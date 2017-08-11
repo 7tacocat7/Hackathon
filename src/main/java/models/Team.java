@@ -7,8 +7,8 @@ public class Team {
     private String teamName;
     private String description;
     //    private String member;
-    private  List<String> members = new ArrayList<String>();
-    public static List<Team>instances = new ArrayList<Team>();
+    private  ArrayList<String> members = new ArrayList<String>();
+    public static ArrayList<Team>instances = new ArrayList<Team>();
 
     public Team(String teamName, String description){
         this.teamName = teamName;
@@ -26,7 +26,7 @@ public class Team {
 
 
 
-    public static List<Team> getAllTeams() {
+    public static ArrayList<Team> getAllTeams() {
         return instances;
     }
 

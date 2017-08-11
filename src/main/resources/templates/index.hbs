@@ -1,8 +1,18 @@
 {{#partial "content"}}
 
-    <h1>Post list!</h1>
+    <h1>Team list!</h1>
 
-    <p>Add a new Post:</p>
+    {{#if posts}} <!--if posts exist, then -->
+        {{#each posts }} <!--loop-->
+            <p>Current post:</p>
+            <p>{{ content }}</p> <!--show-->
+        {{/each}}
+    {{else}} <!--no posts!-->
+    <p>No teams!</p>
+    {{/if}}
+
+
+    <p>Add a newTeam:</p>
 
     <form action="/posts/new" method="POST">
         <label for="teamName">What is your team name?</label>
