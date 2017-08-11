@@ -6,15 +6,17 @@ import java.util.List;
 public class Team {
     private String teamName;
     private String description;
-    //    private String member;
     private  ArrayList<String> members = new ArrayList<String>();
     public static ArrayList<Team>instances = new ArrayList<Team>();
+    private int teamId;
+//    private String teamMember;
 
     public Team(String teamName, String description){
         this.teamName = teamName;
         this.description = description;
-        members = members;
+        this.members =  members;
         instances.add(this);
+        this.teamId = instances.size();
 
     }
 //    getters
@@ -32,6 +34,10 @@ public class Team {
 
     public static void clearAllTeams(){
         instances.clear();
+    }
+
+    public int getTeamId() {
+        return teamId;
     }
 
 }
