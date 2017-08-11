@@ -27,7 +27,7 @@ public class Team {
 
 
     public static List<Team> getAllTeams() {
-        return null;
+        return instances;
     }
 
     public static void clearAllTeams(){
