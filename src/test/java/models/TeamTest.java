@@ -15,12 +15,19 @@ public class TeamTest {
 
     @After
     public void tearDown() throws Exception {
+        Team.clearAllTeams();
     }
 
     @Test
     public void newTeam_instantiatesCorrectly() throws Exception {
         Team testTeam = new Team ("1","the best");
         assertEquals(true, testTeam instanceof Team);
+    }
+    @Test
+    public void AllTeamsAreCorrectlyReturned_true() {
+        Team team = new Team("team","the best");
+        Team otherTeam = new Team ("team2","we the coolest");
+        assertEquals(2, Team.getAllTeams().size());
     }
     @Test
     public void all_returnsAllInstancesOfTeam_true() throws Exception{

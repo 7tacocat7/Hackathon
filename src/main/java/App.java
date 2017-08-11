@@ -14,6 +14,14 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
+        post("/posts/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            String teamName = request.queryParams("teamName");
+            String description = request.queryParams("description");
+            Team newTeam = new Team(teamName,description);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
 
     }
 
