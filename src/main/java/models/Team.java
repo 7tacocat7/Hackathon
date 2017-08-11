@@ -36,10 +36,12 @@ public class Team {
         instances.clear();
     }
 
-    public int getTeamId() {
+    public  int getTeamId() {
         return teamId;
     }
-
+    public static Team findById(int teamId) {
+        return instances.get(teamId - 1);
+    }
 
 }
 
