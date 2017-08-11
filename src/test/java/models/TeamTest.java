@@ -22,7 +22,9 @@ public class TeamTest {
     @Test
     public void all_returnsAllInstancesOfMembers_true() throws Exception {
         Team testTeam = new Team ("bears","the best team on the planet","collin");
-        assertTrue(testTeam.getMembers().contains("bob"));
+        Team testTeam2 = new Team ("cubs","the best","ryan");
+        assertTrue(testTeam.getMembers().contains("collin"));
+        assertTrue(testTeam2.getMembers().contains("ryan"));
     }
 
 

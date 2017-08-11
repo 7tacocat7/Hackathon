@@ -14,13 +14,21 @@ public class Team {
         this.teamName = teamName;
         this.description = description;
         this.member = member;
-        members.add(member);
+        this.members.add(member);
         instances.add(this);
 
     }
     public List<String> getMembers() {
         return members;
     }
+    public void setMembers(List<String> members) {
+        this.members = members;
+    }
+    public void setMember(String member) {
+        this.member = member;
+    }
+
+
 
 
     public static List<Team> getAllTeams() {
