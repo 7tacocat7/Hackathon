@@ -45,6 +45,12 @@ public class TeamTest {
         assertTrue(testTeam.getMembers().contains("collin"));
         assertTrue(testTeam2.getMembers().contains("ryan"));
     }
+    @Test
+    public void getTeamId_postsInstantiateWithAnID_1() throws Exception{
+        Team.clearAllTeams();
+        Team myTeam = new Team("the cool guys","just a bunch of cool guys");
+        assertEquals(1, myTeam.getId());
+    }
 
 
 }
