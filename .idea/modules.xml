@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hack-athon.iml" filepath="$PROJECT_DIR$/.idea/modules/hack-athon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hack-athon_main.iml" filepath="$PROJECT_DIR$/.idea/modules/hack-athon_main.iml" group="hack-athon" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hack-athon_test.iml" filepath="$PROJECT_DIR$/.idea/modules/hack-athon_test.iml" group="hack-athon" />
+    </modules>
+  </component>
+</project>
