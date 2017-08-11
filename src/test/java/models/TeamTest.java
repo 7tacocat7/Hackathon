@@ -60,6 +60,13 @@ public class TeamTest {
     public Team setupNewTeam(){
         return new Team ("team1","the best ever");
     }
+    @Test
+    public void findReturnsCorrectPostWhenMoreThanOnePostExists() throws Exception {
+        Team team = setupNewTeam();
+        Team otherteam = new Team("How to pair successfully");
+        assertEquals(1, Team.findById(otherteam.getTeamId()).getTeamId());
+    }
+
 
 
 }
