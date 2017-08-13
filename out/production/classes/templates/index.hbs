@@ -1,28 +1,15 @@
 {{#partial "content"}}
 
-    <h1>Hackthon Team list!</h1>
+    <h1>Team list!</h1>
 
-    {{#if posts}} <!--if posts exist, then -->
-        {{#each posts }} <!--loop-->
-            <p>Current post:</p>
-            <p>{{ content }}</p> <!--show-->
+    {{#if posts}}
+        {{#each posts }}
+            <p>Current team:</p>
+            <p>{{ teamName }} <a href="/teams/{{id}}">read more...</a></p>
         {{/each}}
-    {{else}} <!--no posts!-->
-    <p>No teams!</p>
+    {{else}}
+        <p>No teams!</p>
     {{/if}}
-
-
-    <p>Add a newTeam:</p>
-
-    <form action="/posts/new" method="post">
-        <label for="teamName">What is your team name?</label><br>
-        <input id="teamName" name="teamName" type="text">
-        <br>
-        <label for="description">Describe your team.</label><br>
-        <input id="description" name="description" type="text">
-
-        <button type="submit" class="btn btn-default">Add team</button>
-    </form>
 {{/partial}}
 
 {{> layout.hbs}}

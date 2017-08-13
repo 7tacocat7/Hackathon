@@ -6,8 +6,8 @@ import java.util.List;
 public class Team {
     private String teamName;
     private String description;
-    private  ArrayList<String> members = new ArrayList<String>();
-    public static ArrayList<Team>instances = new ArrayList<Team>();
+    private  List<String> members = new ArrayList<String>();
+    public static List<Team>instances = new ArrayList<Team>();
     private int teamId;
 //    private String teamMember;
 
@@ -24,11 +24,17 @@ public class Team {
         return members;
     }
 
+    public String getTeamName() {
+        return teamName;
+    }
+    public String getDescription() {
+        return description;
+    }
 
 
 
 
-    public static ArrayList<Team> getAllTeams() {
+    public static List<Team> getAllTeams() {
         return instances;
     }
 
@@ -39,6 +45,7 @@ public class Team {
     public  int getTeamId() {
         return teamId;
     }
+
     public static Team findById(int teamId) {
         return instances.get(teamId - 1);
     }
