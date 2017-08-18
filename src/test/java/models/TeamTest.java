@@ -81,6 +81,9 @@ public class TeamTest {
     }
     @Test
     public void addTeamMemberAddsNewNameToList() throws Exception{
+        Team team = setupNewTeam();
+        team.setMembers("john");
+        assertTrue(team.getMembers().contains("john"));
 
     }
 
