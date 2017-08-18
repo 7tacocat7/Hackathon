@@ -6,20 +6,22 @@ import java.util.List;
 public class Team {
     private String teamName;
     private String description;
+//    private String name;
     private  List<String> members = new ArrayList<String>();
     public static List<Team>instances = new ArrayList<Team>();
     private int teamId;
 //    private String teamMember;
 
-    public Team(String teamName, String description){
+    public Team(String teamName, String description,String name){
         this.teamName = teamName;
         this.description = description;
-        this.members =  members;
+        this.members.add(name);
         instances.add(this);
         this.teamId = instances.size();
 
     }
 //    getters
+
     public List<String> getMembers() {
         return members;
     }

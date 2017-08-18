@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="hack-athon_main" target="1.8" />
       <module name="hack-athon_test" target="1.8" />
+      <module name="Hackathon_main" target="1.8" />
+      <module name="Hackathon_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

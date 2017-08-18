@@ -20,26 +20,26 @@ public class TeamTest {
 
     @Test
     public void newTeam_instantiatesCorrectly() throws Exception {
-        Team testTeam = new Team ("1","the best");
+        Team testTeam = new Team ("1","the best","o");
         assertEquals(true, testTeam instanceof Team);
     }
     @Test
     public void AllTeamsAreCorrectlyReturned_true() {
-        Team team = new Team("team","the best");
-        Team otherTeam = new Team ("team2","we the coolest");
+        Team team = new Team("team","the best","l");
+        Team otherTeam = new Team ("team2","we the coolest","l");
         assertEquals(2, Team.getAllTeams().size());
     }
     @Test
     public void all_returnsAllInstancesOfTeam_true() throws Exception{
-        Team firstTeam = new Team("tigers","we are the best");
-        Team secondTeam = new Team("lions","the lions team is focused on java");
+        Team firstTeam = new Team("tigers","we are the best","p");
+        Team secondTeam = new Team("lions","the lions team is focused on java","i");
         assertTrue(Team.getAllTeams().contains(firstTeam));
         assertTrue(Team.getAllTeams().contains(secondTeam));
     }
     @Test
     public void all_returnsAllInstancesOfMembers_true() throws Exception {
-        Team testTeam = new Team ("bears","the best team on the planet");
-        Team testTeam2 = new Team ("cubs","the best");
+        Team testTeam = new Team ("bears","the best team on the planet","y");
+        Team testTeam2 = new Team ("cubs","the best","tim");
         testTeam.getMembers().add("collin");
         testTeam2.getMembers().add("ryan");
         assertTrue(testTeam.getMembers().contains("collin"));
@@ -48,7 +48,7 @@ public class TeamTest {
     @Test
     public void getTeamId_teamInstantiateWithAnID_1() throws Exception{
         Team.clearAllTeams();
-        Team myTeam = new Team("the cool guys","just a bunch of cool guys");
+        Team myTeam = new Team("the cool guys","just a bunch of cool guys","gary");
         assertEquals(1, myTeam.getTeamId());
     }
     @Test
@@ -58,12 +58,12 @@ public class TeamTest {
     }
 
     public Team setupNewTeam(){
-        return new Team ("team1","the best ever");
+        return new Team ("team1","the best ever","tim");
     }
     @Test
     public void findReturnsCorrectTeamWhenMoreThanOneTeamExists() throws Exception {
         Team team = setupNewTeam();
-        Team otherteam = new Team("the beans","cool beans");
+        Team otherteam = new Team("the beans","cool beans","l");
         assertEquals(2, Team.findById(otherteam.getTeamId()).getTeamId());
     }
 

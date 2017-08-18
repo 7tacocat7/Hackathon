@@ -2,11 +2,11 @@
 
     <h1>Post list!</h1>
 
-    {{#if teams}}
+    {{#if team}}
         {{#each team }}
             <p>team name:</p>
             <p>{{ teamName }}</p>
-            <h5>Created At:</h5>
+            <h5>Description:</h5>
             <p> {{description }}</p>
         {{/each}}
     {{else}}
