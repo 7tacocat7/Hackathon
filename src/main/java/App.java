@@ -31,22 +31,24 @@ public class App {
         // show all Teams
         get("/",(request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
-            model.put("teams", Team.getAllTeams());
+            model.put("team", Team.getAllTeams());
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
+
+        get("/teams", (req, res) -> {
+            Map<String , Object> model = new HashMap<>();
+            List<Team> team = Team.getAllTeams();
+            model.put("team", team);
+            return new ModelAndView(model, "allTeams.hbs");
+        }, new HandlebarsTemplateEngine());
+
         //get: show an individual team
         get("/teams/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfPostToFind = Integer.parseInt(req.params("id"));
             Team team = Team.findById(idOfPostToFind);
             model.put("team", team);
-            return new ModelAndView(model, "post-form.hbs");
-        }, new HandlebarsTemplateEngine());
-        get("/teams", (req, res) -> {
-            Map<String , Object> model = new HashMap<>();
-            List<Team> team = Team.getAllTeams();
-            model.put("team", team);
-            return new ModelAndView(model, "allTeams.hbs");
+            return new ModelAndView(model, "team-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
 
