@@ -33,6 +33,9 @@ public class Team {
     public String getDescription() {
         return description;
     }
+    public void getAddMember(String name){
+        this.members.add(name);
+    }
 
 
 

@@ -42,11 +42,21 @@ public class App {
             return new ModelAndView(model, "allTeams.hbs");
         }, new HandlebarsTemplateEngine());
 
+
         //get: show an individual team
         get("/teams/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfPostToFind = Integer.parseInt(req.params("id"));
             Team team = Team.findById(idOfPostToFind);
+            model.put("team", team);
+            return new ModelAndView(model, "team-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+        post("/teams/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfPostToFind = Integer.parseInt(req.params("id"));
+            String member = req.queryParams("name");
+            Team team = Team.findById(idOfPostToFind);
+            team.setMembers(member);
             model.put("team", team);
             return new ModelAndView(model, "team-detail.hbs");
         }, new HandlebarsTemplateEngine());
