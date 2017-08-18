@@ -77,6 +77,11 @@ public class TeamTest {
         assertEquals(formerId, team.getTeamId());
         assertEquals(formerDescription, team.getDescription());
         assertNotEquals(formerTeamname, team.getTeamName());
+
+    }
+    @Test
+    public void addTeamMemberAddsNewNameToList() throws Exception{
+
     }
 
 
