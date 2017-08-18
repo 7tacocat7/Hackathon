@@ -13,7 +13,7 @@ public class App {
         //get: show new Team form
         get("/teams/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-            return new ModelAndView(model, "newteam-form.hbs");
+            return new ModelAndView(model, "team-form.hbs");
         }, new HandlebarsTemplateEngine());
 
 
@@ -50,15 +50,27 @@ public class App {
             model.put("team", team);
             return new ModelAndView(model, "team-detail.hbs");
         }, new HandlebarsTemplateEngine());
-//        post("/teams/:id", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            int idOfPostToFind = Integer.parseInt(req.params("id"));
-//            String name = req.queryParams("name");
-//            Team team = Team.findById(idOfPostToFind);
-//            team.setMembers(name);
-//            model.put("team",team);
-//            return new ModelAndView(model, "team-detail.hbs");
-//        }, new HandlebarsTemplateEngine());
+
+        //get: show a form to update a post
+        get("/teams/:id/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfTeamToEdit = Integer.parseInt(req.params("id"));
+            Team editTeam = Team.findById(idOfTeamToEdit);
+            model.put("editTeam", editTeam);
+            return new ModelAndView(model, "team-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+        post("/teams/:id/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String newTeamName = req.queryParams("teamName");
+            int idOfTeamToEdit = Integer.parseInt(req.params("id"));
+            Team editTeam = Team.findById(idOfTeamToEdit);
+            model.put("editTeam", editTeam);
+            editTeam.updateTeamName(newTeamName);
+            return new ModelAndView(model,"success.hbs");
+        }, new HandlebarsTemplateEngine());
+
 
 
 

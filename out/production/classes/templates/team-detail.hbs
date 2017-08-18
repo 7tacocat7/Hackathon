@@ -6,14 +6,12 @@
     <h5>Team Details:</h5>
     <p>
         {{#if team.teamName }}
-            <form action="/teams/{{teamId}}" method="post">
-                <label for="name">to add a member to team {{teamname}} please enter a name?</label><br>
-                <input id="name" name="name" type="text">
-                <button type="submit" class="btn btn-default">Add team</button>
-            </form>
+            <p> {{teamName}} </p><br>
+            <p> {{ description}} </p>
         {{else}}
                 <a href="/">Go Back</a>
         {{/if}}
+    <a href="/teams/{{team.teamId}}/update">Edit this team</a>
     </p>
 {{/partial}}
 
