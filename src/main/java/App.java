@@ -50,6 +50,15 @@ public class App {
             model.put("team", team);
             return new ModelAndView(model, "team-detail.hbs");
         }, new HandlebarsTemplateEngine());
+//        post("/teams/:id", (req, res) -> {
+//            Map<String, Object> model = new HashMap<>();
+//            int idOfPostToFind = Integer.parseInt(req.params("id"));
+//            String name = req.queryParams("name");
+//            Team team = Team.findById(idOfPostToFind);
+//            team.setMembers(name);
+//            model.put("team",team);
+//            return new ModelAndView(model, "team-detail.hbs");
+//        }, new HandlebarsTemplateEngine());
 
 
 

@@ -6,7 +6,8 @@ import java.util.List;
 public class Team {
     private String teamName;
     private String description;
-//    private String name;
+
+    //    private String name;
     private  List<String> members = new ArrayList<String>();
     public static List<Team>instances = new ArrayList<Team>();
     private int teamId;
@@ -51,6 +52,18 @@ public class Team {
     public static Team findById(int teamId) {
         return instances.get(teamId - 1);
     }
+
+
+    public void setMembers(String name) {
+        this.members.add(name);
+    }
+
+    public void updateTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+
+
 
 }
 

@@ -67,6 +67,17 @@ public class TeamTest {
         assertEquals(2, Team.findById(otherteam.getTeamId()).getTeamId());
     }
 
+    @Test
+    public void updateChangesTeamContent() throws Exception {
+        Team team = setupNewTeam();
+        String formerTeamname = team.getTeamName();
+        String formerDescription = team.getDescription();
+        int formerId = team.getTeamId();
+        team.updateTeamName("the bull dogs");
+        assertEquals(formerId, team.getTeamId());
+        assertEquals(formerDescription, team.getDescription());
+        assertNotEquals(formerTeamname, team.getTeamName());
+    }
 
 
 }
