@@ -5,11 +5,15 @@ import java.util.List;
 
 public class Team {
     private String teamName;
+
+
     private String description;
 
     //    private String name;
     private  List<String> members = new ArrayList<String>();
     public static List<Team>instances = new ArrayList<Team>();
+
+
     private int teamId;
 //    private String teamMember;
 
@@ -64,6 +68,15 @@ public class Team {
     public void updateTeamName(String teamName) {
         this.teamName = teamName;
     }
+
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 
 
 
