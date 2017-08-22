@@ -77,11 +77,18 @@ public class Sql2oTeamDaoTest {
         teamDao.add(team);
         teamDao.update(team.getTeamId(),"we are fucking Fire!!!");
         Team updatedTeam = teamDao.findByTeamId(team.getTeamId());
-        assertNotEquals(initialDescriptionr,updatedTeam.getDescription());
+        assertNotEquals(initialDescription,updatedTeam.getDescription());
     }
 
     public Team setupNewTeam(){
         return new Team ("the best","we are awesome");
+    }
+    @Test public void deleteByTeamIdDeletesCorrectTeam(){
+        Team team = setupNewTeam();
+        teamDao.add(team);
+        teamDao.deleteByTeamId(team.getTeamId());
+        assertEquals(1,teamDao.getAllTeams().size());
+
     }
 
 //    }
