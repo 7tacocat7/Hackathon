@@ -44,6 +44,20 @@ public class Sql2oTeamDao implements TeamDao {
                     .executeAndFetchFirst(Team.class); //fetch an individual item
         }
     }
+    @Override
+    public void update(int teamId,String newDescription) {
+        String sql = "UPDATE teams SET description = :description WHERE teamId=:teamId";
+        try (Connection con = sql2o.open())
+
+        {
+            con.createQuery(sql)
+                    .addParameter("description", newDescription)
+                    .addParameter("teamId", teamId)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
 
 } //implementing our interface
 

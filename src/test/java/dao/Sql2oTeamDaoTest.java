@@ -66,8 +66,18 @@ public class Sql2oTeamDaoTest {
     }
     @Test
     public void noTeamsAreFoundIfNonePresent() throws Exception {
-        
+
         assertEquals(0, teamDao.getAllTeams().size());
+    }
+
+    @Test
+    public void updateChangesTeamDescription() throws Exception {
+        Team team = setupNewTeam();
+        String initialDescription ="the best";
+        teamDao.add(team);
+        teamDao.update(team.getTeamId(),"we are fucking Fire!!!");
+        Team updatedTeam = teamDao.findByTeamId(team.getTeamId());
+        assertNotEquals(initialDescriptionr,updatedTeam.getDescription());
     }
 
     public Team setupNewTeam(){
