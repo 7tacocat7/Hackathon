@@ -1,6 +1,6 @@
 package datamodels;
 
-public class Members {
+public class Member {
     private String memberName;
     private String memberId;
 
@@ -27,7 +27,7 @@ public class Members {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Members members = (Members) o;
+        Member members = (Member) o;
 
         if (!memberName.equals(members.memberName)) return false;
         return memberId != null ? memberId.equals(members.memberId) : members.memberId == null;
