@@ -23,7 +23,7 @@ public class App {
             Map<String, Object> model = new HashMap<>();
 
             List<Member> allMembers = memberDao.getAll();
-            model.put("categories", allMembers);
+            model.put("members", allMembers);
 
             List<Team> teams = teamDao.getAll();
             model.put("teams", teams);
@@ -34,14 +34,48 @@ public class App {
         //gets a specific member (and its team )
         //  /members/:member_id
 
+        get("/members/:catId", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfMemberToFind = Integer.parseInt(req.params("catId")); //new
+
+            List<Member> members = memberDao.getAll(); //refresh list of links for navbar.
+            model.put("members", members);
+
+            Member foundMember = memberDao.findById(idOfMemberToFind);
+            model.put("member", foundMember);
+            List<Team> allTeamsByMember = memberDao.getAllTeamsByMember(idOfMemberToFind);
+            model.put("teams", allTeamsByMember);
+
+            return new ModelAndView(model, "member-detail.hbs"); //new
+        }, new HandlebarsTemplateEngine());
         //get: show a specific team and its specific member
         //  /members/:member_id/teams/:team_id
 
         //get: show a form to create a new member
         //  /members/new
+        get("/members/new", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+
+            List<Member> members = memberDao.getAll(); //refresh list of links for navbar.
+            model.put("members", members);
+
+            return new ModelAndView(model, "member-form.hbs"); //new
+        }, new HandlebarsTemplateEngine());
+
 
         //post: process a form to create a new member
         //  /members
+        post("/members", (request, response) -> { //new
+            Map<String, Object> model = new HashMap<>();
+            String name = request.queryParams("name");
+            Member newMember = new Member(name);
+            memberDao.add(newMember);
+
+            List<Member> members = memberDao.getAll(); //refresh list of links for navbar.
+            model.put("members", members);
+
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
 
         //get: show a form to update a member
         //  /members/update

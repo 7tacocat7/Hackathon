@@ -5,7 +5,7 @@
     {{#if team}}
         {{#each team }}
             <p>Current team:</p>
-            <p>{{ teamName }} <a href="/teams/{{id}}">read more...</a></p>
+            <p>{{ teamName }} <br>{{ description }}<a href="/members/{{memberId}}/teams/{{id}}">read more...</a></p>
         {{/each}}
     {{else}}
         <p>No teams!</p>
