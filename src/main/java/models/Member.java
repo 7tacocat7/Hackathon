@@ -1,16 +1,23 @@
-package datamodels;
+package models;
 
 public class Member {
     private String memberName;
-    private String memberId;
+    private int id;
 
-//getters
+//constructor
+
+
+    public Member(String memberName) {
+        this.memberName = memberName;
+    }
+
+    //getters
     public String getMemberName() {
         return memberName;
     }
 
-    public String getMemberId() {
-        return memberId;
+    public int getId() {
+        return id;
     }
 //setters
 
@@ -18,8 +25,8 @@ public class Member {
         this.memberName = memberName;
     }
 
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -27,16 +34,16 @@ public class Member {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Member members = (Member) o;
+        Member member = (Member) o;
 
-        if (!memberName.equals(members.memberName)) return false;
-        return memberId != null ? memberId.equals(members.memberId) : members.memberId == null;
+        if (id != member.id) return false;
+        return memberName.equals(member.memberName);
     }
 
     @Override
     public int hashCode() {
         int result = memberName.hashCode();
-        result = 31 * result + (memberId != null ? memberId.hashCode() : 0);
+        result = 31 * result + id;
         return result;
     }
 }

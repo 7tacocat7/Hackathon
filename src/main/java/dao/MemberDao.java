@@ -1,7 +1,7 @@
 package dao;
 
-import datamodels.Member;
-import datamodels.Team;
+import models.Member;
+import models.Team;
 
 import java.util.List;
 
@@ -10,17 +10,17 @@ public interface MemberDao {
     void add(Member member);
 
     //read
-    List<Member> getAllMembers();
+    List<Member> getAll();
 
     List<Team> getAllTeamsByMember(int memberId);
 
-    Member findByMemberId(int memberId);
+    Member findById(int id);
 
     //update
-    void updateMember(int memberId, String memberName);
+    void update(int id, String memberName);
 
     //delete
-    void deleteByMemberId(int memberId);
+    void deleteById(int id);
 
     void clearAllMembers();
 }

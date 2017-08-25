@@ -1,5 +1,5 @@
 package dao;
-import datamodels.Team;
+import models.Team;
 import java.util.List;
 
 public interface TeamDao {
@@ -8,12 +8,13 @@ public interface TeamDao {
     void add (Team team);
 //    //read
     List<Team> getAllTeams();
-    Team findByTeamId(int teamId);
+
+    Team findByTeamId(int id);
 //
 //    //update
-    void update (int teamId, String description);
+    void update (int id, String description, int memberId);
     //delete
-   void deleteByTeamId(int teamId); //me too
+   void deleteByTeamId(int id); //me too
 
     void clearAllTeams();
 

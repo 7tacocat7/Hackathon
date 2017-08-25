@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ApexVcsIndex">
     <index-move-record>
-      <option name="firstPath" value="/src/main/java/models/Members.java" />
-      <option name="path" value="/src/main/java/datamodels/Members.java" />
+      <option name="firstPath" value="/src/main/java/datamodels/Member.java" />
+      <option name="path" value="/src/main/java/models/Member.java" />
     </index-move-record>
     <index-move-record>
-      <option name="firstPath" value="/src/main/java/models/Team.java" />
-      <option name="path" value="/src/main/java/datamodels/Team.java" />
+      <option name="firstPath" value="/src/main/java/models/Members.java" />
+      <option name="path" value="/src/main/java/datamodels/Members.java" />
     </index-move-record>
   </component>
 </project>

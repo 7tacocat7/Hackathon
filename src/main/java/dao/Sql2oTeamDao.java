@@ -1,7 +1,6 @@
 package dao;
 
-import datamodels.Team;
-import dao.TeamDao;
+import models.Team;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
@@ -18,13 +17,18 @@ public class Sql2oTeamDao implements TeamDao {
 
     @Override
     public void add(Team team) {
-        String sql = "INSERT INTO teams (teamName, description) VALUES (:teamName, :description)"; //raw sql
+        String sql = "INSERT INTO teams (teamName, description, memberid) VALUES (:teamName, :description, :memberid)"; //raw sql
         try(Connection con = sql2o.open()){//try to open a connection
             int id = (int) con.createQuery(sql)//make a new variable
-                    .bind(team)//map my argument onto the query so we can use information from it
+                    .addParameter("teamName", team.getTeamName())
+                    .addParameter("description", team.getDescription())
+                    .addParameter("memberid", team.getId())
+                    .addColumnMapping("TEAMNAME", "teamname")
+                    .addColumnMapping("DESCRIPTION", "description")
+                    .addColumnMapping("memberid", "memberid")
                     .executeUpdate()//run it all
                     .getKey();//int id is now the row number (row “key”) of db
-            team.setTeamId(id);//update object to set id now from database
+            team.setId(id);//update object to set id now from database
         } catch (Sql2oException ex) {
             System.out.println(ex);
         }
@@ -37,33 +41,33 @@ public class Sql2oTeamDao implements TeamDao {
         }
     }
     @Override
-    public Team findByTeamId(int teamId) {
+    public Team findByTeamId(int id) {
         try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM teams WHERE teamId = :teamId")
-                    .addParameter("teamId",teamId)//key/value pair, key must match above
+            return con.createQuery("SELECT * FROM teams WHERE id = :id")
+                    .addParameter("id",id)//key/value pair, key must match above
                     .executeAndFetchFirst(Team.class); //fetch an individual item
         }
     }
     @Override
-    public void update(int teamId,String newDescription) {
-        String sql = "UPDATE teams SET description = :description WHERE teamId=:teamId";
+    public void update(int id, String newDescription, int memberId) {
+        String sql = "UPDATE teams SET description = :description WHERE id=:id";
         try (Connection con = sql2o.open())
 
         {
             con.createQuery(sql)
                     .addParameter("description", newDescription)
-                    .addParameter("teamId", teamId)
+                    .addParameter("id", id)
                     .executeUpdate();
         } catch (Sql2oException ex) {
             System.out.println(ex);
         }
     }
     @Override
-    public void deleteByTeamId(int teamId) {
-        String sql ="DELETE from teams WHERE teamId = :teamId";
+    public void deleteByTeamId(int id) {
+        String sql ="DELETE from teams WHERE id = :id";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
-                    .addParameter("teamId",teamId)
+                    .addParameter("id",id)
                     .executeUpdate();
         } catch (Sql2oException ex){
             System.out.println(ex);

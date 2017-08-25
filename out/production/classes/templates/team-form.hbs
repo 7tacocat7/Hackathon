@@ -1,7 +1,7 @@
 {{#partial "content"}}
     {{# if editTeam }}
         <h1> Edit this Team</h1>
-        <form action="/teams/{{editTeam.teamId}}/update" method="post">
+        <form action="/teams/{{editTeam.id}}/update" method="post">
             <label for="teamName">Edit this teams name</label>
             <input id="teamName" name="teamName" type="text" value="{{editTeam.teamName}}">
             <button type="submit" class="btn btn-default">edit team</button>

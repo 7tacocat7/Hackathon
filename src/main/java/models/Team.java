@@ -1,8 +1,9 @@
-package datamodels;
+package models;
 public class Team {
-    private int teamId;
+    private int id;
     private String teamName;
     private String description;
+    private int memberId;
 
 
 //constructor
@@ -11,8 +12,19 @@ public class Team {
         this.description = description;
     }
 //setters
-    public void setDescription(String description) {this.description = description;}
-    public void setTeamId(int teamId) {this.teamId = teamId;}
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 
     //override methods
 
@@ -24,14 +36,14 @@ public class Team {
 
         Team team = (Team) o;
 
-        if (teamId != team.teamId) return false;
+        if (id != team.id) return false;
         if (!teamName.equals(team.teamName)) return false;
         return description.equals(team.description);
     }
 
     @Override
     public int hashCode() {
-        int result = teamId;
+        int result = id;
         result = 31 * result + teamName.hashCode();
         result = 31 * result + description.hashCode();
         return result;
@@ -44,16 +56,10 @@ public class Team {
     public String getTeamName() {
         return this.teamName;
     }
-    public int getTeamId() { return this.teamId;}
+    public int getId() { return this.id;}
 
-
-
-
-
-
-
-
-
-
+    public int getMemberId() {
+        return memberId;
+    }
 }
 

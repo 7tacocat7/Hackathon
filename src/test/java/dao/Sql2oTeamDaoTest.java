@@ -1,7 +1,8 @@
 
 package dao;
 
-import datamodels.Team;
+import models.Member;
+import models.Team;
 
 import org.junit.After;
 import org.junit.Before;
@@ -38,34 +39,26 @@ public class Sql2oTeamDaoTest {
     @Test
     public void addingTeamSetsId() throws Exception {
     Team team = setupNewTeam();
-    int originalTeamId = team.getTeamId();
+    int originalTeamId = team.getId();
     teamDao.add(team);
     assertNotEquals(originalTeamId, team);
-
-
     }
-    @Test
-    public void addingCourseSetsId() throws Exception {
-    Team team = setupNewTeam();
-    int originalTaskId = team.getTeamId();
-    teamDao.add(team);
-    assertNotEquals(originalTaskId, team.getTeamId()); //how does this work?
-    }
+
     @Test
     public void existingTeamsCanBeFoundByTeamId() throws Exception {
     Team team = setupNewTeam();
     teamDao.add(team);//add to dao (takes care of saving)
-    Team foundTeam = teamDao.findByTeamId(team.getTeamId());// retrieve
+    Team foundTeam = teamDao.findByTeamId(team.getId());// retrieve
     assertEquals(team, foundTeam);
     }
     @Test
-    public void allTeamsAreFound() throws  Exception{
+    public void allTeamsAreReturnedFromGetAll() throws  Exception{
     Team team = setupNewTeam();
     teamDao.add(team);
     assertEquals(1,teamDao.getAllTeams().size());
     }
     @Test
-    public void noTeamsAreFoundIfNonePresent() throws Exception {
+    public void noTeamsReturnsEmptyList() throws Exception {
 
         assertEquals(0, teamDao.getAllTeams().size());
     }
@@ -73,16 +66,17 @@ public class Sql2oTeamDaoTest {
     @Test
     public void updateChangesTeamDescription() throws Exception {
         Team team = setupNewTeam();
+        Member member = new Member ("carson ");
         String initialDescription ="the best";
         teamDao.add(team);
-        teamDao.update(team.getTeamId(),"we are fucking Fire!!!");
-        Team updatedTeam = teamDao.findByTeamId(team.getTeamId());
+        teamDao.update(team.getId(),"we are Living Fire!!!",member.getId());
+        Team updatedTeam = teamDao.findByTeamId(team.getId());
         assertNotEquals(initialDescription,updatedTeam.getDescription());
     }
     @Test public void deleteByTeamIdDeletesCorrectTeam(){
         Team team = setupNewTeam();
         teamDao.add(team);
-        teamDao.deleteByTeamId(team.getTeamId());
+        teamDao.deleteByTeamId(team.getId());
         assertEquals(0,teamDao.getAllTeams().size());
 
     }
@@ -93,8 +87,16 @@ public class Sql2oTeamDaoTest {
         teamDao.add(team1);
         int daoSize = teamDao.getAllTeams().size();
         teamDao.clearAllTeams();
-        assertEquals(1,daoSize);
+        assertEquals(2,daoSize);
     }
+    @Test
+    public void categoryIdIsReturnedCorrectly() throws Exception {
+        Team team = setupNewTeam();
+        int originalCatId = team.getId();
+        teamDao.add(team);
+        assertEquals(originalCatId, teamDao.findByTeamId(team.getId()).getMemberId());
+    }
+
 
     public Team setupNewTeam(){
         return new Team ("the best","we are awesome");
