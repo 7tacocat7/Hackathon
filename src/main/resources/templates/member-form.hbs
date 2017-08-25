@@ -1,0 +1,26 @@
+{{#partial "content"}}
+
+    {{#if editMember}}
+        <h1>Edit this category!</h1>
+        <form action="/members/update" method="post">
+            <select name="editMemberId" id="editMemberId">
+                {{#each members }}
+                    <option value="{{id}}">{{memberName}}</option>
+                {{/each}}
+            </select>
+            <label for="name">Edit this category's name</label>
+            <input id="newMemberName" name="newMemberName" type="text" placeholder="new category name">
+
+    {{else}}
+            <h1>Add a new Member!</h1>
+
+        <form action="/members" method="post">
+            <label for="name">Member Name</label>
+            <input id="name" name="name" type="text">
+
+    {{/if}}
+        <button type="submit" class="btn btn-default">Go!</button>
+    </form>
+{{/partial}}
+
+{{> layout.hbs}}

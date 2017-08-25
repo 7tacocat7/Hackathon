@@ -7,14 +7,14 @@ public interface TeamDao {
     //create
     void add (Team team);
 //    //read
-    List<Team> getAllTeams();
+    List<Team> getAll();
 
-    Team findByTeamId(int id);
+    Team findById(int id);
 //
 //    //update
     void update (int id, String description, int memberId);
     //delete
-   void deleteByTeamId(int id); //me too
+   void deleteById(int id); //me too
 
     void clearAllTeams();
 

@@ -90,7 +90,7 @@ public class Sql2oMemberDaoTest {
         memberDao.add(member);
         memberDao.add(otherMember);
         int daoSize = memberDao.getAll().size();
-        memberDao.clearAllCategories();
+        memberDao.clearAllMembers();
         assertTrue(daoSize > 0 && daoSize > memberDao.getAll().size());
     }
 
@@ -99,9 +99,9 @@ public class Sql2oMemberDaoTest {
         Member member = setupNewMember();
         memberDao.add(member);
         int memberId = member.getId();
-        Team newTeam = new Team("tigers", memberId);
-        Team otherTeam = new Team("bears", memberId);
-        Team thirdTeam = new Team("the beasts", memberId);
+        Team newTeam = new Team("tigers", "the best");
+        Team otherTeam = new Team("bears", "the best");
+        Team thirdTeam = new Team("the beasts", "the best");
         teamDao.add(newTeam);
         teamDao.add(otherTeam); //we are not adding task 3 so we can test things precisely.
 
@@ -111,4 +111,5 @@ public class Sql2oMemberDaoTest {
         assertTrue(memberDao.getAllTeamsByMember(memberId).contains(otherTeam));
         assertFalse(memberDao.getAllTeamsByMember(memberId).contains(thirdTeam)); //things are accurate!
     }
+
 }
