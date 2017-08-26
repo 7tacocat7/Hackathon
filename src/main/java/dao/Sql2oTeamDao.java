@@ -8,7 +8,7 @@ import org.sql2o.Connection;
 import java.util.List;
 
 //implementing our interface
-public class Sql2oTeamDao implements TeamDao {
+public class Sql2oTeamDao implements TeamDao   {
     private final Sql2o sql2o;
     public Sql2oTeamDao(Sql2o sql2o){
         this.sql2o = sql2o;//making the sql2o object available everywhere so we can call methods in it
@@ -33,14 +33,14 @@ public class Sql2oTeamDao implements TeamDao {
             System.out.println(ex);
         }
     }
-//    @Override
+    @Override
     public List<Team> getAllTeams() {
         try (Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM teams")
                     .executeAndFetch(Team.class);//fetch a list
         }
     }
-//    @Override
+    @Override
     public Team findByTeamId(int id) {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM teams WHERE id = :id")
@@ -62,7 +62,7 @@ public class Sql2oTeamDao implements TeamDao {
             System.out.println(ex);
         }
     }
-//    @Override
+    @Override
     public void deleteByTeamId(int id) {
         String sql ="DELETE from teams WHERE id = :id";
         try (Connection con = sql2o.open()) {

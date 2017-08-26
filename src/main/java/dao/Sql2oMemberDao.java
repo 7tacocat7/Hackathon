@@ -8,14 +8,14 @@ import org.sql2o.Sql2oException;
 
 import java.util.List;
 
-public class Sql2oMemberDao {
+public class Sql2oMemberDao implements  MemberDao {
     private final Sql2o sql2o;
 
     public Sql2oMemberDao(Sql2o sql2o){
         this.sql2o = sql2o;
     }
 
-//    @Override
+    @Override
     public void add(Member member) {
         String sql = "INSERT INTO members (name) VALUES (:name)";
         try(Connection con = sql2o.open()){
@@ -29,7 +29,7 @@ public class Sql2oMemberDao {
         }
     }
 
-//    @Override
+    @Override
     public List<Member> getAll() {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM members")
@@ -37,7 +37,7 @@ public class Sql2oMemberDao {
         }
     }
 
-//    @Override
+    @Override
     public Member findById(int id) {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM members WHERE id = :id")
@@ -46,7 +46,7 @@ public class Sql2oMemberDao {
         }
     }
 
-//    @Override
+    @Override
     public void update(int id, String newName){
         String sql = "UPDATE members SET name = :name WHERE id=:id";
         try(Connection con = sql2o.open()){
@@ -59,7 +59,7 @@ public class Sql2oMemberDao {
         }
     }
 
-//    @Override
+    @Override
     public void deleteById(int id) {
         String sql = "DELETE from members WHERE id=:id"; //raw sql
         try (Connection con = sql2o.open()) {
@@ -71,7 +71,7 @@ public class Sql2oMemberDao {
         }
     }
 
-//    @Override
+    @Override
     public void clearAllMembers() {
         String sql = "DELETE from members"; //raw sql
         try (Connection con = sql2o.open()) {
@@ -82,7 +82,7 @@ public class Sql2oMemberDao {
         }
     }
 
-//    @Override
+    @Override
     public List<Team> getAllTeamsByMember(int memberId) {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM teams WHERE memberId = :memberId")
