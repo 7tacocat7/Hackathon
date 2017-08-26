@@ -15,8 +15,9 @@ import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class Sql2oTeamDaoTest {
-    private Connection conn;//must be sql2o class conn
     private   Sql2oTeamDao teamDao; //ignore me for now. We'll create this soon.
+    private Connection conn;//must be sql2o class conn
+
 
 
     @Before

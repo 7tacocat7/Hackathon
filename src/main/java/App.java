@@ -21,13 +21,67 @@ public class App {
 
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-
-            List<Member> allMembers = memberDao.getAll();
-            model.put("members", allMembers);
-
             List<Team> teams = teamDao.getAll();
             model.put("teams", teams);
             return new ModelAndView(model, "index.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: delete all teams
+        get("/teams/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Member> allMembers = memberDao.getAll();
+            model.put("members", allMembers);
+            teamDao.clearAllTeams();
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: show new team form
+        get("/teams/new", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "team-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //post: process new team form
+        post("/teams/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            String description = request.queryParams("description");
+            Team newTeam = new Team("tigers", "the best" ); //ignore the hardcoded membersId
+            teamDao.add(newTeam);
+            model.put("team", newTeam);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: show an individual team that is nested in a member
+        get("/members/:members_id/teams/:team_id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfTeamToFind = Integer.parseInt(req.params("team_id"));
+            Team foundTeam = teamDao.findById(idOfTeamToFind);
+            model.put("team", foundTeam);
+            return new ModelAndView(model, "team-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: show a form to update a team
+        get("/teams/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Member> allMembers = memberDao.getAll();
+            model.put("members", allMembers);
+            List<Team> allTeams = teamDao.getAll();
+            model.put("teams", allTeams);
+            model.put("editTeam", true);
+            return new ModelAndView(model, "team-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //post: process a form to update a team
+        post("/teams/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Member> allMembers = memberDao.getAll();
+            model.put("members", allMembers);
+            String newContent = req.queryParams("description");
+            int newMemberId = Integer.parseInt(req.queryParams("memberId"));
+            int teamToEditId = Integer.parseInt(req.queryParams("teamToEditId"));
+            Team editTeam = teamDao.findById(teamToEditId);
+            teamDao.update(teamToEditId, newContent, newMemberId);
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
 
@@ -37,15 +91,12 @@ public class App {
         get("/members/:catId", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfMemberToFind = Integer.parseInt(req.params("catId")); //new
-
             List<Member> members = memberDao.getAll(); //refresh list of links for navbar.
             model.put("members", members);
-
             Member foundMember = memberDao.findById(idOfMemberToFind);
             model.put("member", foundMember);
             List<Team> allTeamsByMember = memberDao.getAllTeamsByMember(idOfMemberToFind);
             model.put("teams", allTeamsByMember);
-
             return new ModelAndView(model, "member-detail.hbs"); //new
         }, new HandlebarsTemplateEngine());
         //get: show a specific team and its specific member
@@ -79,14 +130,31 @@ public class App {
 
         //get: show a form to update a member
         //  /members/update
+        get("/members/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
 
-        //post: process a form to update a member
-        //  /members/update
+            model.put("editMember", true);
+
+            List<Member> allMembers = memberDao.getAll();
+            model.put("members", allMembers);
+
+            return new ModelAndView(model, "member-form.hbs");
+        }, new HandlebarsTemplateEngine());
 
         //get: delete a member and its team
         //  /members/:member_id/delete
 
         //get: delete all members and all teams
+        get("/members/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            teamDao.clearAllTeams();
+            memberDao.clearAllMembers();
+
+            List<Member> allMembers = memberDao.getAll();
+            model.put("members", allMembers);
+
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
 
         //get: show all teams and all members
 
@@ -95,57 +163,6 @@ public class App {
             List<Team> teams = teamDao.getAll();
             model.put("teams", teams);
             return new ModelAndView(model, "index.hbs");
-        }, new HandlebarsTemplateEngine());
-
-        //get: delete all teams
-        get("/teams/delete", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            teamDao.clearAllTeams();
-            return new ModelAndView(model, "success.hbs");
-        }, new HandlebarsTemplateEngine());
-
-        //get: show new team form
-        get("/teams/new", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            return new ModelAndView(model, "team-form.hbs");
-        }, new HandlebarsTemplateEngine());
-
-        //post: process new team form
-        post("/teams/new", (request, response) -> {
-            Map<String, Object> model = new HashMap<>();
-            String description = request.queryParams("description");
-            Team newTeam = new Team("tigers", "the best" ); //ignore the hardcoded membersId
-            teamDao.add(newTeam);
-            model.put("team", newTeam);
-            return new ModelAndView(model, "success.hbs");
-        }, new HandlebarsTemplateEngine());
-
-        //get: show an individual team that is nested in a members
-        get("/members/:members_id/teams/:team_id", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            int idOfTeamToFind = Integer.parseInt(req.params("team_id"));
-            Team foundTeam = teamDao.findById(idOfTeamToFind);
-            model.put("team", foundTeam);
-            return new ModelAndView(model, "team-detail.hbs");
-        }, new HandlebarsTemplateEngine());
-
-        //get: show a form to update a team
-        get("/teams/update", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            int idOfTeamToEdit = Integer.parseInt(req.params("id"));
-            Team editTeam = teamDao.findById(idOfTeamToEdit);
-            model.put("editTeam", editTeam);
-            return new ModelAndView(model, "team-form.hbs");
-        }, new HandlebarsTemplateEngine());
-
-        //post: process a form to update a team
-        post("/teams/update", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            String newContent = req.queryParams("description");
-            int idOfTeamToEdit = Integer.parseInt(req.queryParams("id"));
-            Team editTeam = teamDao.findById(idOfTeamToEdit);
-            teamDao.update(idOfTeamToEdit, newContent, 1); //ignore the hardcoded membersId for now.
-            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: delete an individual team
