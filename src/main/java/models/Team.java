@@ -7,7 +7,7 @@ public class Team {
 
 
 //constructor
-    public Team(String teamName, String description){
+    public Team(String teamName, String description,int memberId){
         this.teamName = teamName;
         this.description = description;
     }

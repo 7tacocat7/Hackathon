@@ -100,7 +100,7 @@ public class Sql2oTeamDaoTest {
 
 
     public Team setupNewTeam(){
-        return new Team ("the best","we are awesome");
+        return new Team ("the best","we are awesome", 1);
     }
 
 

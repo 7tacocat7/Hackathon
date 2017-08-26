@@ -45,7 +45,7 @@ public class App {
         post("/teams/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             String description = request.queryParams("description");
-            Team newTeam = new Team("tigers", "the best" ); //ignore the hardcoded membersId
+            Team newTeam = new Team("tigers", "the best",1 ); //ignore the hardcoded membersId
             teamDao.add(newTeam);
             model.put("team", newTeam);
             return new ModelAndView(model, "success.hbs");
@@ -106,10 +106,8 @@ public class App {
         //  /members/new
         get("/members/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-
             List<Member> members = memberDao.getAll(); //refresh list of links for navbar.
             model.put("members", members);
-
             return new ModelAndView(model, "member-form.hbs"); //new
         }, new HandlebarsTemplateEngine());
 
@@ -158,7 +156,7 @@ public class App {
 
         //get: show all teams and all members
 
-        get("/", (req, res) -> {
+        get("/teams", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Team> teams = teamDao.getAllTeams();
             model.put("teams", teams);

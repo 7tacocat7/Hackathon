@@ -9,16 +9,16 @@
                 {{/each}}
             </select>
             <br>
-            <label for="description">Edit this team's description</label>
-            <input id="description" name="description" type="text" placeholder="Enter a new description">
-            <br>
-            <label for="memberId">Update this team's member:</label>
-            <select id="memberId" name="memberId">
-                {{#each members}}
-                    <option value="{{id}}">{{memberName}}</option>
-                {{/each}}
-            </select>
-            <p>Don't see the right member?<a href="/members/new">Add a new one first.</a></p>
+                <label for="description">Edit this team's description</label>
+                <input id="description" name="description" type="text" placeholder="Enter a new description">
+                <br>
+                <label for="memberId">Update this team's member:</label>
+                <select id="memberId" name="memberId">
+                    {{#each members}}
+                        <option value="{{id}}">{{memberName}}</option>
+                    {{/each}}
+                </select>
+                <p>Don't see the right member?<a href="/members/new">Add a new one first.</a></p>
 
     {{else}}
             <h2>Add a new Team!</h2>

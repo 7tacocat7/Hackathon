@@ -17,12 +17,12 @@
         <ul class="dropdown-menu">
             {{#if members}}
                 {{#each members}}
-                    <li><a href="/categories/{{id}}">{{memberName}}</a></li>
+                    <li><a href="/members/{{id}}">{{memberName}}</a></li>
                 {{/each}}
-                <li><a href="/categories/new">Add a team member</a></li>
+                <li><a href="/members/new">Add a team member</a></li>
 
             {{else}}
-                <li><a href="/categories/new">Add a team member</a></li>
+                <li><a href="/members/new">Add a team member</a></li>
             {{/if}}
         </ul>
     </li>

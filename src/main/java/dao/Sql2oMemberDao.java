@@ -17,7 +17,7 @@ public class Sql2oMemberDao implements  MemberDao {
 
     @Override
     public void add(Member member) {
-        String sql = "INSERT INTO members (name) VALUES (:name)";
+        String sql = "INSERT INTO members (memberName) VALUES (:memberName)";
         try(Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql)
                     .bind(member)
@@ -48,10 +48,10 @@ public class Sql2oMemberDao implements  MemberDao {
 
     @Override
     public void update(int id, String newName){
-        String sql = "UPDATE members SET name = :name WHERE id=:id";
+        String sql = "UPDATE members SET memberName = :memberName WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
-                    .addParameter("name", newName)
+                    .addParameter("memberName", newName)
                     .addParameter("id", id)
                     .executeUpdate();
         } catch (Sql2oException ex) {

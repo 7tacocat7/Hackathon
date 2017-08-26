@@ -32,9 +32,6 @@ public class Sql2oMemberDaoTest {
         conn.close();
     }
 
-    public Member setupNewMember() {
-        return new Member("Yardwork");
-    }
 
     @Test
     public void addingCourseSetsId() throws Exception {
@@ -66,13 +63,13 @@ public class Sql2oMemberDaoTest {
 
     @Test
     public void updateChangesMemberContent() throws Exception {
-        String initialDescription = "Yardwork";
-        Member member = new Member (initialDescription);
+        String initialname = "bob";
+        Member member = new Member (initialname);
         memberDao.add(member);
 
-        memberDao.update(member.getId(),"Cleaning");
+        memberDao.update(member.getId(),"ted");
         Member updatedMember = memberDao.findById(member.getId());
-        assertNotEquals(initialDescription, updatedMember.getMemberName());
+        assertNotEquals(initialname, updatedMember.getMemberName());
     }
 
     @Test
@@ -86,7 +83,7 @@ public class Sql2oMemberDaoTest {
     @Test
     public void clearAllClearsAll() throws Exception {
         Member member = setupNewMember();
-        Member otherMember = new Member("Cleaning");
+        Member otherMember = new Member("bill");
         memberDao.add(member);
         memberDao.add(otherMember);
         int daoSize = memberDao.getAll().size();
@@ -97,11 +94,12 @@ public class Sql2oMemberDaoTest {
     @Test
     public void getAllTeamsByMemberReturnsTeamsCorrectly() throws Exception {
         Member member = setupNewMember();
+//        member.setId(1);
         memberDao.add(member);
         int memberId = member.getId();
-        Team newTeam = new Team("tigers", "the best");
-        Team otherTeam = new Team("bears", "the best");
-        Team thirdTeam = new Team("the beasts", "the best");
+        Team newTeam = new Team("tigers", "the best",memberId);
+        Team otherTeam = new Team("bears", "the best",memberId);
+        Team thirdTeam = new Team("the beasts", "the best",memberId);
         teamDao.add(newTeam);
         teamDao.add(otherTeam); //we are not adding task 3 so we can test things precisely.
 
@@ -110,6 +108,9 @@ public class Sql2oMemberDaoTest {
         assertTrue(memberDao.getAllTeamsByMember(memberId).contains(newTeam));
         assertTrue(memberDao.getAllTeamsByMember(memberId).contains(otherTeam));
         assertFalse(memberDao.getAllTeamsByMember(memberId).contains(thirdTeam)); //things are accurate!
+    }
+    public Member setupNewMember() {
+        return new Member("phill");
     }
 
 }
