@@ -19,7 +19,13 @@ public class App {
         Sql2oTeamDao teamDao = new Sql2oTeamDao(sql2o);
         Sql2oMemberDao memberDao = new Sql2oMemberDao(sql2o);
 
+
+
+
+
         get("/", (req, res) -> {
+            Team blaaa = new Team("lkds;jfalksjfd;als","asld;jflksajd", 1);
+            teamDao.add(blaaa);
             Map<String, Object> model = new HashMap<>();
             List<Team> teams = teamDao.getAllTeams();
             model.put("teams", teams);
@@ -71,7 +77,6 @@ public class App {
 
             List<Member> members = memberDao.getAll(); //refresh list of links for navbar.
             model.put("members", members);
-
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -173,6 +178,8 @@ public class App {
             teamDao.deleteByTeamId(idOfTeamToDelete);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
+
+
 
 
     }

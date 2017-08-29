@@ -1,9 +1,10 @@
 {{#partial "content"}}
 
+
     <h1>Team list!</h1>
 
-    {{#if team}}
-        {{#each team }}
+    {{#if teams}}
+        {{#each teams }}
             <p>Current team:</p>
             <p>{{ teamName }} <br>{{ description }}<a href="/members/{{memberId}}/teams/{{id}}">read more...</a></p>
         {{/each}}

@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Desktop-Hackathon.iml" filepath="$PROJECT_DIR$/.idea/modules/Desktop-Hackathon.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Desktop-Hackathon_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Desktop-Hackathon_main.iml" group="Hackathon" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Desktop-Hackathon_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Desktop-Hackathon_test.iml" group="Hackathon" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Hackathon.iml" filepath="$PROJECT_DIR$/.idea/modules/Hackathon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hackathon.iml" filepath="$PROJECT_DIR$/Hackathon.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Hackathon_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Hackathon_main.iml" group="Hackathon" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Hackathon_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Hackathon_test.iml" group="Hackathon" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hack-athon.iml" filepath="$PROJECT_DIR$/.idea/modules/hack-athon.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hack-athon_main.iml" filepath="$PROJECT_DIR$/.idea/modules/hack-athon_main.iml" group="hack-athon" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hack-athon_test.iml" filepath="$PROJECT_DIR$/.idea/modules/hack-athon_test.iml" group="hack-athon" />
     </modules>
   </component>
 </project>
