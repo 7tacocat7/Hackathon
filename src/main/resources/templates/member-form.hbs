@@ -1,10 +1,15 @@
 {{#partial "content"}}
+    <h1>Add a new Team</h1>
+
+    <form action="/teams" method="post">
+        <label for="name">Team name</label>
+        <input id="name" name="name" type="text">
 
     {{#if editMember}}
-        <h1>Edit this category!</h1>
+        <h1>Edit this member!</h1>
         <form action="/members/update" method="post">
             <select name="editMemberId" id="editMemberId">
-                {{#each members }}
+                {{#each members}}
                     <option value="{{id}}">{{memberName}}</option>
                 {{/each}}
             </select>

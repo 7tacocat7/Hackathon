@@ -135,10 +135,10 @@ public class App {
         //post: process a form to update a team
         post("/teams/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Member> allMembers = memberDao.getAll();
-            model.put("members", allMembers);
+            List<Team> allTeams = teamDao.getAllTeams();
+            model.put("teams", allTeams);
             String newContent = req.queryParams("description");
-            int newMemberId = Integer.parseInt(req.queryParams("memberId"));
+            int newMemberId = Integer.parseInt(req.queryParams("teamId"));
             int teamToEditId = Integer.parseInt(req.queryParams("teamToEditId"));
             Team editTeam = teamDao.findByTeamId(teamToEditId);
             teamDao.update(teamToEditId, newContent, newMemberId);
