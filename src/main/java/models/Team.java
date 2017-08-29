@@ -11,6 +11,12 @@ public class Team {
         this.teamName = teamName;
         this.description = description;
     }
+
+    public Team(String teamName, String description){
+        this.teamName = teamName;
+        this.description = description;
+    }
+//setters
 //setters
 
     public void setId(int id) {

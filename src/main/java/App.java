@@ -24,8 +24,8 @@ public class App {
 
 
         get("/", (req, res) -> {
-            Team blaaa = new Team("lkds;jfalksjfd;als","asld;jflksajd", 1);
-            teamDao.add(blaaa);
+//            Team winners = new Team("fish People","the gilliest");
+//            teamDao.add(winners);
             Map<String, Object> model = new HashMap<>();
             List<Team> teams = teamDao.getAllTeams();
             model.put("teams", teams);
@@ -50,8 +50,9 @@ public class App {
         //post: process new team form
         post("/teams/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
+            String teamName = request.queryParams("name");
             String description = request.queryParams("description");
-            Team newTeam = new Team("tigers", "the best",1 ); //ignore the hardcoded membersId
+            Team newTeam = new Team(teamName, description, 1); //ignore the hardcoded membersId
             teamDao.add(newTeam);
             model.put("team", newTeam);
             return new ModelAndView(model, "success.hbs");
@@ -127,7 +128,7 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get: show a form to update a team
-        get("/teams/update", (req, res) -> {
+        get("/teams/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Member> allMembers = memberDao.getAll();
             model.put("members", allMembers);

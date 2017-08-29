@@ -1,13 +1,6 @@
 {{#partial "content"}}
 
-    <h1>Add a New Team</h1>
-    <form action="/teams/new" method="post">
-        <label for="description">Team Description</label>
-        <input id="description" name="description" type="text">
-        <button type="submit" class="btn btn-default">Go!</button>
-    </form>
-
-    {{#if editTeams}}
+    {{#if editTeam}}
         <form action="/teams/update" method="post">
             <h1>Edit this Team!</h1>
             <select id="teamToEditId" name="teamToEditId">
@@ -29,11 +22,14 @@
 
     {{else}}
 
-            <form action="teams/new" method="post">
-                <label for="name">Team name</label>
-                <input id="name" name="name" type="text">
-            </form>
-            <buton type="submit" class="btn btn-default"></buton>
+            <!--<h1>Add a New Team</h1>-->
+            <!--<form action="/teams/new" method="post">-->
+                <!--<label for="name">Team name</label>-->
+                <!--<input id="name" name="name" type="text">-->
+                <!--<label for="description">Team Description</label>-->
+                <!--<input id="description" name="description" type="text">-->
+                <!--<button type="submit" class="btn btn-default">Go!</button>-->
+            <!--</form>-->
 
         {{#if members}}
 
