@@ -70,7 +70,7 @@ public class Sql2oTeamDaoTest {
         Member member = new Member ("carson ");
         String initialDescription ="the best";
         teamDao.add(team);
-        teamDao.update(team.getId(),"we are Living Fire!!!",member.getId());
+        teamDao.update(team.getId(),"we are Living Fire!!!");
         Team updatedTeam = teamDao.findByTeamId(team.getId());
         assertNotEquals(initialDescription,updatedTeam.getDescription());
     }

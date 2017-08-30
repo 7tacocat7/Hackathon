@@ -91,24 +91,24 @@ public class Sql2oMemberDaoTest {
         assertTrue(daoSize > 0 && daoSize > memberDao.getAll().size());
     }
 
-    @Test
-    public void getAllTeamsByMemberReturnsTeamsCorrectly() throws Exception {
-        Member member = setupNewMember();
+//    @Test
+//    public void getAllTeamsByMemberReturnsTeamsCorrectly() throws Exception {
+//        Member member = setupNewMember();
 //        member.setId(1);
-        memberDao.add(member);
-        int memberId = member.getId();
-        Team newTeam = new Team("tigers", "the best",memberId);
-        Team otherTeam = new Team("bears", "the best",memberId);
-        Team thirdTeam = new Team("the beasts", "the best",memberId);
-        teamDao.add(newTeam);
-        teamDao.add(otherTeam); //we are not adding task 3 so we can test things precisely.
-
-
-        assertTrue(memberDao.getAllTeamsByMember(memberId).size() == 2);
-        assertTrue(memberDao.getAllTeamsByMember(memberId).contains(newTeam));
-        assertTrue(memberDao.getAllTeamsByMember(memberId).contains(otherTeam));
-        assertFalse(memberDao.getAllTeamsByMember(memberId).contains(thirdTeam)); //things are accurate!
-    }
+//        memberDao.add(member);
+//        int memberId = member.getId();
+//        Team newTeam = new Team("tigers", "the best",memberId);
+//        Team otherTeam = new Team("bears", "the best",memberId);
+//        Team thirdTeam = new Team("the beasts", "the best",memberId);
+//        teamDao.add(newTeam);
+//        teamDao.add(otherTeam); //we are not adding task 3 so we can test things precisely.
+//
+//
+//        assertTrue(memberDao.getAllTeamsByMember(memberId).size() == 2);
+//        assertTrue(memberDao.getAllTeamsByMember(memberId).contains(newTeam));
+//        assertTrue(memberDao.getAllTeamsByMember(memberId).contains(otherTeam));
+//        assertFalse(memberDao.getAllTeamsByMember(memberId).contains(thirdTeam)); //things are accurate!
+//    }
     public Member setupNewMember() {
         return new Member("phill");
     }
