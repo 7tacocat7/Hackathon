@@ -138,9 +138,11 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             List<Member> allMembers = memberDao.getAll();
             model.put("members", allMembers);
+            int newteamId = Integer.parseInt(req.params("id"));
             List<Team> allTeams = teamDao.getAllTeams();
+            Team editTeam = teamDao.findByTeamId(newteamId);
             model.put("teams", allTeams);//puts all teams from the model to display
-            model.put("editTeam", true);//puts editteam as true for the if statment
+            model.put("editTeam", editTeam);//puts editteam as true for the if statment
             return new ModelAndView(model, "team-form.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -150,7 +152,7 @@ public class App {
             List<Team> allTeams = teamDao.getAllTeams();
             model.put("teams", allTeams);
             String newDescription = req.queryParams("description");
-            int newteamId = Integer.parseInt(req.queryParams(":id"));//500 error. not sure how to grab this value. numberformat exception thrown. value is not parsed
+            int newteamId = Integer.parseInt(req.params("id"));//500 error. not sure how to grab this value. numberformat exception thrown. value is not parsed
             int teamToEditId = Integer.parseInt(req.queryParams("teamToEditId"));
             Team editTeam = teamDao.findByTeamId(teamToEditId);
             model.put("team", newteamId);//puts the id of the TeamId to edit?

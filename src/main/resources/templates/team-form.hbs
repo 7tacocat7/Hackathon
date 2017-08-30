@@ -1,13 +1,11 @@
 {{#partial "content"}}
 
     {{#if editTeam}}
-        <form action="/teams/:id/update" method="post">
+        <form action="/teams/{{editTeam.id}}/update" method="post">
             <h1>Edit this Team!</h1>
             <select id="teamToEditId" name="teamToEditId">
                 {{#each teams }}
-                    <option value="{{team.id}}">{{description}}</option>
-
-
+                    <option value="{{id}}">{{description}}</option>
                 {{/each}}
             </select>
             <br>
