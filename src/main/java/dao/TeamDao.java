@@ -12,7 +12,7 @@ public interface TeamDao {
     Team findByTeamId(int id);
 //
 //    //update
-    void update (int id, String description, int memberId);
+    void update (int id, String description);
     //delete
    void deleteByTeamId(int id); //me too
 

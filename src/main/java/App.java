@@ -75,7 +75,6 @@ public class App {
             String name = request.queryParams("name");
             Member newMember = new Member(name);
             memberDao.add(newMember);
-
             List<Member> members = memberDao.getAll(); //refresh list of links for navbar.
             model.put("members", members);
             return new ModelAndView(model, "success.hbs");
@@ -139,15 +138,16 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //post: process a form to update a team
-        post("/teams/update", (req, res) -> {
+        post("/teams/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Team> allTeams = teamDao.getAllTeams();
             model.put("teams", allTeams);
-            String newContent = req.queryParams("description");
-            int newMemberId = Integer.parseInt(req.queryParams("teamId"));
+            String newDescription = req.queryParams("description");
+//            int newteamId = Integer.parseInt(req.params(":id"));
             int teamToEditId = Integer.parseInt(req.queryParams("teamToEditId"));
             Team editTeam = teamDao.findByTeamId(teamToEditId);
-            teamDao.update(teamToEditId, newContent, newMemberId);
+            model.put("editTeam", editTeam);
+            teamDao.update(teamToEditId, newDescription);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -155,9 +155,9 @@ public class App {
         //gets a specific member (and its team )
         //  /members/:member_id
 
-        get("/members/:catId", (req, res) -> {
+        get("/members/:memId", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int idOfMemberToFind = Integer.parseInt(req.params("catId")); //new
+            int idOfMemberToFind = Integer.parseInt(req.params("memId")); //new
             List<Member> members = memberDao.getAll(); //refresh list of links for navbar.
             model.put("members", members);
             Member foundMember = memberDao.findById(idOfMemberToFind);

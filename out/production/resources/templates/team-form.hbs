@@ -1,16 +1,20 @@
 {{#partial "content"}}
 
     {{#if editTeam}}
-        <form action="/teams/update" method="post">
+        <form action="/teams/:id/update" method="post">
             <h1>Edit this Team!</h1>
             <select id="teamToEditId" name="teamToEditId">
                 {{#each teams }}
-                    <option value="{{id}}">{{description}}</option>
+                    <option value="{{team.id}}">{{description}}</option>
+
+
                 {{/each}}
             </select>
             <br>
             <label for="description">Edit this team's description</label>
             <input id="description" name="description" type="text" placeholder="Enter a new description">
+            <button type="submit" class="btn btn-default">Edit Team!</button>
+        </form>
             <br>
             <label for="memberId">Update this team's member:</label>
             <select id="memberId" name="memberId">
@@ -22,14 +26,14 @@
 
     {{else}}
 
-            <!--<h1>Add a New Team</h1>-->
-            <!--<form action="/teams/new" method="post">-->
-                <!--<label for="name">Team name</label>-->
-                <!--<input id="name" name="name" type="text">-->
-                <!--<label for="description">Team Description</label>-->
-                <!--<input id="description" name="description" type="text">-->
-                <!--<button type="submit" class="btn btn-default">Go!</button>-->
-            <!--</form>-->
+            <h1>Add a New Team</h1>
+            <form action="/teams/new" method="post">
+                <label for="name">Team name</label>
+                <input id="name" name="name" type="text">
+                <label for="description">Team Description</label>
+                <input id="description" name="description" type="text">
+                <button type="submit" class="btn btn-default">Go!</button>
+            </form>
 
         {{#if members}}
 
