@@ -3,6 +3,7 @@ package models;
 public class Member {
     private String memberName;
     private int id;
+    private int teamId;
 
 //constructor
 
@@ -16,10 +17,18 @@ public class Member {
         return memberName;
     }
 
+    public int getTeamId() {
+        return teamId;
+    }
+
     public int getId() {
         return id;
     }
 //setters
+
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
+    }
 
     public void setMemberName(String memberName) {
         this.memberName = memberName;
@@ -37,6 +46,7 @@ public class Member {
         Member member = (Member) o;
 
         if (id != member.id) return false;
+        if (teamId != member.teamId) return false;
         return memberName.equals(member.memberName);
     }
 
@@ -44,6 +54,7 @@ public class Member {
     public int hashCode() {
         int result = memberName.hashCode();
         result = 31 * result + id;
+        result = 31 * result + teamId;
         return result;
     }
 }

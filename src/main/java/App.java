@@ -19,16 +19,29 @@ public class App {
         Sql2oTeamDao teamDao = new Sql2oTeamDao(sql2o);
         Sql2oMemberDao memberDao = new Sql2oMemberDao(sql2o);
 
-        before("/teams/:id/update", (req, res) -> {
-            if(req.params(":id") == null){
-                res.redirect("/");
-                halt();
-            }
-                });
+//        before("/teams/:id/update", (req, res) -> {
+//            if(req.params(":id") == null){
+//                res.redirect("/");
+//                halt();
+//            }
+//                });
 
+        //get: show new team form
+        get("/teams/new", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "team-form.hbs");
+        }, new HandlebarsTemplateEngine());
 
-
-
+        //post: process new team form
+        post("/teams/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            String teamName = request.queryParams("name");
+            String description = request.queryParams("description");
+            Team newTeam = new Team(teamName, description, 1); //ignore the hardcoded membersId
+            teamDao.add(newTeam);
+            model.put("team", newTeam);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
 
         get("/", (req, res) -> {
 //            Team winners = new Team("fish People","the gilliest");
@@ -48,22 +61,7 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //get: show new team form
-        get("/teams/new", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            return new ModelAndView(model, "team-form.hbs");
-        }, new HandlebarsTemplateEngine());
 
-        //post: process new team form
-        post("/teams/new", (request, response) -> {
-            Map<String, Object> model = new HashMap<>();
-            String teamName = request.queryParams("name");
-            String description = request.queryParams("description");
-            Team newTeam = new Team(teamName, description, 1); //ignore the hardcoded membersId
-            teamDao.add(newTeam);
-            model.put("team", newTeam);
-            return new ModelAndView(model, "success.hbs");
-        }, new HandlebarsTemplateEngine());
 
         //get: show a form to create a new member
         //  /members/new
@@ -122,6 +120,19 @@ public class App {
             List<Team> teams = teamDao.getAllTeams();
             model.put("teams", teams);
             return new ModelAndView(model, "index.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: show a form to update a team
+        get("/teams/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Member> allMembers = memberDao.();
+            model.put("members", allMembers);
+            int newteamId = Integer.parseInt(req.params("id"));
+            List<Team> allTeams = teamDao.getAllTeams();
+            Team editTeam = teamDao.findByTeamId(newteamId);
+            model.put("teams", allTeams);//puts all teams from the model to display
+            model.put("editTeam", editTeam);//puts editteam as true for the if statment
+            return new ModelAndView(model, "team-form.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: show an individual team that is nested in a member

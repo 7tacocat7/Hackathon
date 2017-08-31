@@ -1,0 +1,33 @@
+{{#partial "content"}}
+    <!--<p>Team name:</p>-->
+    <!--<p>{{ team.teamName }}</p>-->
+    <!--<h5>Description:</h5>-->
+    <!--<p> {{ team.description }}</p>-->
+    <!--<h5>Team Details:</h5>-->
+    <p>
+        {{#if team.teamName }}
+            <p> Team Name:  {{team.teamName}} </p><br>
+            <p> Team Description:  {{ team.description}} </p>
+                {{#each member.memberName}}
+                    {{/each}}
+
+
+
+
+            <!--<form action="/teams/{{team.id}}" method="post">-->
+                <!--<label for="name">add a team member!</label>-->
+                <!--<input id="name" name="name" type="text" value="{{editTeam.teamName}}">-->
+                <!--<button type="submit" class="btn btn-default">add a new team member</button>-->
+            <!--</form>-->
+
+        {{else}}
+
+        {{/if}}
+    <a href="/">Go Back</a> <br> <p> or</p> <br>
+    <a href="/teams/{{team.id}}/update">Edit this team</a>
+    <br>
+    <br>
+    </p>
+{{/partial}}
+
+{{> layout.hbs}}

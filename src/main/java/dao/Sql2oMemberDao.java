@@ -81,7 +81,6 @@ public class Sql2oMemberDao implements  MemberDao {
             System.out.println(ex);
         }
     }
-
     @Override
     public List<Team> getAllTeamsByMember(int memberId) {
         try(Connection con = sql2o.open()){
@@ -90,4 +89,28 @@ public class Sql2oMemberDao implements  MemberDao {
                     .executeAndFetch(Team.class);
         }
     }
+
+    @Override
+    public List<Member>getAllMembersByTeam(int teamId) {
+        try (Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM members WHERE teamId = :teamId")
+                    .addParameter("teamId", teamId)
+                    .executeAndFetch(Member.class);
+        }
+    }
+    @Override
+    public void addMembertoTeam(Member member, Team team) {
+        int teamId = team.getId();
+        int id = member.getId();
+        String sql = "INSERT INTO members (teamId) VALUES (:teamId)  WHERE id= :id;";
+        try (Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("teamId", teamId)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
 }

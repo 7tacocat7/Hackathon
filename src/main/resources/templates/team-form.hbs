@@ -33,20 +33,20 @@
                 <button type="submit" class="btn btn-default">Go!</button>
             </form>
 
-        {{#if members}}
+        <!--{{#if members}}-->
 
-                <label for="memberId">add a member to  this team:</label>
+                <!--<label for="memberId">add a member to  this team:</label>-->
 
-                <select id="memberId" name="memberId">
+                <!--<select id="memberId" name="memberId">-->
 
-                    {{#each members}}
-                        <option value="{{id}}">{{memberName}}</option> <!--what is going on here? -->
-                    {{/each}}
-                </select>
-                <p>Don't see the right member?<a href="/members/new">Add a new one first.</a></p>
-        {{else}}
-                <h3> You'll need to add a member before you add a team. <a href="/members/new">Add one here.</a> </h3>
-        {{/if}}
+                    <!--{{#each members}}-->
+                        <!--<option value="{{id}}">{{memberName}}</option> &lt;!&ndash;what is going on here? &ndash;&gt;-->
+                    <!--{{/each}}-->
+                <!--</select>-->
+                <!--<p>Don't see the right member?<a href="/members/new">Add a new one first.</a></p>-->
+        <!--{{else}}-->
+                <!--<h3> You'll need to add a member before you add a team. <a href="/members/new">Add one here.</a> </h3>-->
+        <!--{{/if}}-->
 
     {{/if}}
 

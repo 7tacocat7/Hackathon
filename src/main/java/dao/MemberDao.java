@@ -9,8 +9,11 @@ public interface MemberDao {
     //create
     void add(Member member);
 
+
     //read
     List<Member> getAll();
+
+    List<Member> getAllMembersByTeam(int teamId);
 
     List<Team> getAllTeamsByMember(int memberId);
 
@@ -19,9 +22,14 @@ public interface MemberDao {
     //update
     void update(int id, String memberName);
 
+    void addMembertoTeam(Member member, Team team);
+
+
     //delete
     void deleteById(int id);
 
     void clearAllMembers();
+
+
 }
 
